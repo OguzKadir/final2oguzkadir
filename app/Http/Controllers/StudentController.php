@@ -33,9 +33,27 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function save(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+            'department' => 'required',
+        ]);
+
+        // Insert the data to the database
+        $student = new Student();
+        $student->name = $request->name;
+        $student->email = $request->surname;
+        $student->password = $request->deparment;
+        $save = $student->save();
+
+        if ($save) {
+            return back()->with('success', 'Student added');
+        } else {
+            return back()->with('fail', 'Something wrong, try again.');
+        }
+
     }
 
     /**
