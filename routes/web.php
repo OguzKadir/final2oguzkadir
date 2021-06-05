@@ -19,3 +19,5 @@ Route::get('/', function () {
 Route::put('/students/{student}', function () {
     return view('students.edit');
 });
+Route::post('/save', [StudentController::class,'save'])->name('student.save');
+Route::get('/newStudent', [StudentController::class,'create'])->name('student.newtudent');
